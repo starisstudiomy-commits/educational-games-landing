@@ -6,22 +6,46 @@
 </head>
 <body>
 
-<nav class="navbar">
-  <div class="brand">Staris <span>Studio</span> 🎮</div>
-  <div class="brand" style="font-size:14px; font-weight:700; color:#8b88a3;">Educational Games</div>
-</nav>
-
-<!-- HERO -->
 <section class="hero">
-  <div class="hero-badge">✨ Belajar Sambil Bermain, Tahun 1</div>
-  <h1>Buat Anak Anda <span class="highlight">Jatuh Cinta</span><br>Dengan Belajar!</h1>
-  <p class="subtitle">3 permainan edukasi interaktif untuk Matematik, Bahasa Inggeris &amp; Sains Tahun 1 — dibina khas supaya anak-anak seronok belajar setiap hari.</p>
-  <a href="#pakej" class="hero-cta">Pilih Pakej Sekarang 🚀</a>
+  <nav class="navbar">
+    <div>
+      <div class="brand">Staris <span>Studio</span> 🎮</div>
+      <div class="tagline">Educational Games</div>
+    </div>
+  </nav>
 
-  <div class="hero-mascots">
-    <img src="<?= assetBase ?>/mascots/momo.png" alt="Momo">
-    <img src="<?= assetBase ?>/mascots/kiki.png" alt="Kiki">
-    <img src="<?= assetBase ?>/mascots/dratom.png" alt="Dr Atom">
+  <div class="hero-inner">
+    <div class="hero-badge">✨ Belajar Sambil Bermain, Tahun 1</div>
+    <h1>Buat Anak Anda <span class="highlight">Jatuh Cinta</span><br>Dengan Belajar!</h1>
+    <p class="subtitle">3 permainan edukasi interaktif untuk Matematik, Bahasa Inggeris &amp; Sains Tahun 1 — dibina khas supaya anak-anak seronok belajar setiap hari.</p>
+    <a href="#pakej" class="hero-cta">Pilih Pakej Sekarang 🚀</a>
+
+    <div class="hero-trust">
+      <span>🛡️ Selaras Silibus KSSR</span>
+      <span>✅ Selamat &amp; Tanpa Iklan</span>
+      <span>📱 Belajar Di Mana-Mana</span>
+    </div>
+
+    <div class="hero-games">
+      <div class="hero-game-card momo">
+        <span class="tahun-badge">Tahun 1</span>
+        <img class="hero-mascot" src="<?= assetBase ?>/mascots/momo.png" alt="Momo">
+        <h4>Misi Momo</h4>
+        <p>MATEMATIK</p>
+      </div>
+      <div class="hero-game-card kiki">
+        <span class="tahun-badge">Tahun 1</span>
+        <img class="hero-mascot" src="<?= assetBase ?>/mascots/kiki.png" alt="Kiki">
+        <h4>Kiki's Mission</h4>
+        <p>ENGLISH</p>
+      </div>
+      <div class="hero-game-card atom">
+        <span class="tahun-badge">Tahun 1</span>
+        <img class="hero-mascot" src="<?= assetBase ?>/mascots/dratom.png" alt="Dr Atom">
+        <h4>Makmal Dr Atom</h4>
+        <p>SAINS</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -32,32 +56,32 @@
     <p class="section-subtitle">Dibina bersama pendidik, direka untuk buat anak-anak seronok belajar.</p>
     <div class="features-grid">
       <div class="feature-card">
-        <span class="emoji">🎯</span>
+        <span class="icon-circle">🎯</span>
         <h3>Selaras Silibus</h3>
         <p>Kandungan disusun mengikut KSSR Tahun 1 supaya pembelajaran di rumah selari dengan sekolah.</p>
       </div>
       <div class="feature-card">
-        <span class="emoji">🕹️</span>
+        <span class="icon-circle">🕹️</span>
         <h3>Gamified Learning</h3>
         <p>Setiap topik dibalut dalam bentuk misi &amp; permainan supaya anak-anak tak rasa sedang "belajar".</p>
       </div>
       <div class="feature-card">
-        <span class="emoji">📈</span>
-        <h3>Susunan Progresif</h3>
-        <p>Aras kesukaran meningkat sedikit demi sedikit — anak-anak membina keyakinan langkah demi langkah.</p>
+        <span class="icon-circle">📈</span>
+        <h3>Pantau Kemajuan</h3>
+        <p>Laporan prestasi membantu ibu bapa kenal pasti topik kuat &amp; lemah anak dengan mudah.</p>
       </div>
       <div class="feature-card">
-        <span class="emoji">🧑‍🤝‍🧑</span>
-        <h3>Watak Yang Disayangi</h3>
-        <p>Mascot comel seperti Momo, Kiki &amp; Dr Atom buatkan anak teruja nak main lagi dan lagi.</p>
+        <span class="icon-circle">🛡️</span>
+        <h3>Selamat &amp; Berkualiti</h3>
+        <p>Direka bersama pendidik, tanpa iklan, selamat dan sesuai untuk kanak-kanak.</p>
       </div>
       <div class="feature-card">
-        <span class="emoji">📱</span>
+        <span class="icon-circle">📱</span>
         <h3>Senang Diakses</h3>
         <p>Hanya perlukan Order ID untuk log masuk dan main — tiada pemasangan rumit.</p>
       </div>
       <div class="feature-card">
-        <span class="emoji">👨‍👩‍👧</span>
+        <span class="icon-circle">👨‍👩‍👧</span>
         <h3>Sesuai Waktu Keluarga</h3>
         <p>Boleh dimainkan bersama ibu bapa sebagai aktiviti "quality time" yang produktif.</p>
       </div>
@@ -177,13 +201,28 @@
 
     <div class="packages-grid" id="packagesGrid">
       <? for (var i = 0; i < packages.length; i++) { ?>
-        <div class="package-card" data-id="<?= packages[i].id ?>" data-price="<?= packages[i].price ?>" data-name="<?= packages[i].name ?>">
-          <? if (packages[i].id === 'bundle') { ?>
-            <span class="bundle-badge">JIMAT PALING BANYAK</span><br>
+        <? var isBundle = packages[i].id === 'bundle'; ?>
+        <div class="package-card<? if (isBundle) { ?> popular<? } ?>" data-id="<?= packages[i].id ?>" data-price="<?= packages[i].price ?>" data-name="<?= packages[i].name ?>">
+          <? if (isBundle) { ?>
+            <span class="popular-badge">PALING POPULAR</span>
           <? } ?>
-          <img src="<?= assetBase ?>/mascots/<? if (packages[i].id === 'bundle') { ?>momo<? } else { ?><?= packages[i].id ?><? } ?>.png" alt="">
+          <span class="tag"><? if (isBundle) { ?>3 Game<? } else { ?>1 Game<? } ?></span>
+          <img src="<?= assetBase ?>/mascots/<? if (isBundle) { ?>momo<? } else { ?><?= packages[i].id ?><? } ?>.png" alt="">
           <h4><?= packages[i].name ?></h4>
-          <div class="price">RM<?= packages[i].price ?></div>
+          <div class="price">RM<?= packages[i].price ?> <span>/<? if (isBundle) { ?>3 game<? } else { ?>game<? } ?></span></div>
+          <ul class="pkg-features">
+            <? if (isBundle) { ?>
+              <li>Akses penuh 3 permainan</li>
+              <li>Laporan prestasi lengkap</li>
+              <li>Sokongan ibu bapa</li>
+              <li>Lebih jimat!</li>
+            <? } else { ?>
+              <li>Akses penuh 1 permainan</li>
+              <li>Laporan prestasi</li>
+              <li>Sokongan ibu bapa</li>
+            <? } ?>
+          </ul>
+          <span class="select-btn">Pilih Pakej</span>
         </div>
       <? } ?>
     </div>
@@ -227,6 +266,19 @@
       <a class="wa-btn" id="waLink" href="#" target="_blank">📲 Hantar Resit ke WhatsApp Admin</a>
       <p style="font-size:13px; color:#8b88a3; margin-top:16px;">Order ID rasmi akan dihantar ke email anda selepas pembayaran disahkan.</p>
     </div>
+  </div>
+</section>
+
+<section class="guarantee-bar">
+  <div class="guarantee-inner">
+    <div class="guarantee-text">
+      <span class="shield">🛡️</span>
+      <div>
+        <b>Jaminan 100%</b>
+        <span>Tidak berpuas hati? Kami bantu hingga anda &amp; anak puas hati!</span>
+      </div>
+    </div>
+    <a class="guarantee-wa" href="https://wa.me/<?= paymentInfo.whatsapp ?>" target="_top">📲 Order Sekarang di WhatsApp</a>
   </div>
 </section>
 
