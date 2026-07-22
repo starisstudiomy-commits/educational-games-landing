@@ -50,7 +50,7 @@
 </section>
 
 <!-- KELEBIHAN -->
-<section class="section" id="kelebihan">
+<section class="section section-kelebihan" id="kelebihan">
   <div class="container">
     <h2 class="section-title">Kenapa Ibu Bapa Suka Produk Kami?</h2>
     <p class="section-subtitle">Dibina bersama pendidik, direka untuk buat anak-anak seronok belajar.</p>
@@ -90,7 +90,7 @@
 </section>
 
 <!-- CARA GUNA -->
-<section class="section" style="background:#fff;">
+<section class="section section-steps">
   <div class="container">
     <h2 class="section-title">Cara Guna, Senang Je!</h2>
     <p class="section-subtitle">4 langkah mudah dari order sampai anak mula bermain.</p>
@@ -120,81 +120,87 @@
 </section>
 
 <!-- PRODUK -->
-<section class="section" id="produk">
+<section class="section section-produk" id="produk">
   <div class="container">
     <h2 class="section-title">3 Permainan Edukasi Kami</h2>
     <p class="section-subtitle">Setiap produk fokus kepada satu subjek utama Tahun 1.</p>
 
-    <div class="product-block">
-      <div class="mascot-col">
+    <div class="product-card momo">
+      <div class="product-header">
         <img class="mascot" src="<?= assetBase ?>/mascots/momo.png" alt="Momo">
-      </div>
-      <div class="info-col">
-        <h3>Misi Momo <span style="color:#8b88a3; font-size:15px;">(Matematik Tahun 1)</span></h3>
-        <p>Bantu Momo selesaikan misi mengira, mencampur dan menolak dalam dunia penuh warna. Anak-anak belajar konsep nombor asas sambil menyelesaikan cabaran demi cabaran.</p>
-        <ul class="highlight-list">
-          <li>Ikut KSSR penuh: nombor, tambah, tolak, wang, masa, bentuk, ukuran</li>
-          <li>Monster &amp; boss battle lepas jawab soalan — seronok &amp; mencabar</li>
-          <li>Power-up: double tap, freeze, bom — aktif lepas 3 jawapan betul</li>
-          <li>Kawalan ibu bapa (PIN) + laporan kemajuan ikut topik</li>
-        </ul>
-        <div class="shot-row">
-          <img src="<?= assetBase ?>/screenshots/momo-1.jpg" alt="">
-          <img src="<?= assetBase ?>/screenshots/momo-2.jpg" alt="">
-          <img src="<?= assetBase ?>/screenshots/momo-3.jpg" alt="">
+        <div class="product-heading">
+          <h3>Misi Momo</h3>
+          <span class="subject-tag">Matematik Tahun 1</span>
         </div>
         <div class="price-tag">RM25</div>
       </div>
+      <p>Bantu Momo selesaikan misi mengira, mencampur dan menolak dalam dunia penuh warna. Anak-anak belajar konsep nombor asas sambil menyelesaikan cabaran demi cabaran.</p>
+      <ul class="highlight-list">
+        <li>Ikut KSSR penuh: nombor, tambah, tolak, wang, masa, bentuk, ukuran</li>
+        <li>Monster &amp; boss battle lepas jawab soalan — seronok &amp; mencabar</li>
+        <li>Power-up: double tap, freeze, bom — aktif lepas 3 jawapan betul</li>
+        <li>Kawalan ibu bapa (PIN) + laporan kemajuan ikut topik</li>
+      </ul>
+      <p class="slider-hint">👉 Leret untuk lihat lebih banyak screenshot</p>
+      <div class="screenshot-slider">
+        <img src="<?= assetBase ?>/screenshots/momo-1.jpg" alt="Screenshot Misi Momo 1">
+        <img src="<?= assetBase ?>/screenshots/momo-2.jpg" alt="Screenshot Misi Momo 2">
+        <img src="<?= assetBase ?>/screenshots/momo-3.jpg" alt="Screenshot Misi Momo 3">
+      </div>
     </div>
 
-    <div class="product-block reverse">
-      <div class="mascot-col">
+    <div class="product-card kiki">
+      <div class="product-header">
         <img class="mascot" src="<?= assetBase ?>/mascots/kiki.png" alt="Kiki">
-      </div>
-      <div class="info-col">
-        <h3>Kiki's Mission <span style="color:#8b88a3; font-size:15px;">(Bahasa Inggeris Tahun 1)</span></h3>
-        <p>Ikuti pengembaraan Kiki si burung sambil membina kosa kata, ejaan dan ayat mudah Bahasa Inggeris. Sesuai untuk anak-anak yang baru mula belajar membaca.</p>
-        <ul class="highlight-list">
-          <li>24 unit KSSR lengkap + 800+ soalan berbeza, tak pernah bosan</li>
-          <li>Dwibahasa — arahan BI, hint makna BM, senang anak faham</li>
-          <li>Monster battle, progress map &amp; koleksi sticker setiap unit</li>
-          <li>Parental PIN + laporan progress mingguan untuk ibu bapa</li>
-        </ul>
-        <div class="shot-row">
-          <img src="<?= assetBase ?>/screenshots/kiki-1.jpg" alt="">
-          <img src="<?= assetBase ?>/screenshots/kiki-2.jpg" alt="">
-          <img src="<?= assetBase ?>/screenshots/kiki-3.jpg" alt="">
+        <div class="product-heading">
+          <h3>Kiki's Mission</h3>
+          <span class="subject-tag">Bahasa Inggeris Tahun 1</span>
         </div>
         <div class="price-tag">RM25</div>
+      </div>
+      <p>Ikuti pengembaraan Kiki si burung sambil membina kosa kata, ejaan dan ayat mudah Bahasa Inggeris. Sesuai untuk anak-anak yang baru mula belajar membaca.</p>
+      <ul class="highlight-list">
+        <li>24 unit KSSR lengkap + 800+ soalan berbeza, tak pernah bosan</li>
+        <li>Dwibahasa — arahan BI, hint makna BM, senang anak faham</li>
+        <li>Monster battle, progress map &amp; koleksi sticker setiap unit</li>
+        <li>Parental PIN + laporan progress mingguan untuk ibu bapa</li>
+      </ul>
+      <p class="slider-hint">👉 Leret untuk lihat lebih banyak screenshot</p>
+      <div class="screenshot-slider">
+        <img src="<?= assetBase ?>/screenshots/kiki-1.jpg" alt="Screenshot Kiki's Mission 1">
+        <img src="<?= assetBase ?>/screenshots/kiki-2.jpg" alt="Screenshot Kiki's Mission 2">
+        <img src="<?= assetBase ?>/screenshots/kiki-3.jpg" alt="Screenshot Kiki's Mission 3">
       </div>
     </div>
 
-    <div class="product-block">
-      <div class="mascot-col">
+    <div class="product-card atom">
+      <div class="product-header">
         <img class="mascot" src="<?= assetBase ?>/mascots/dratom.png" alt="Dr Atom">
-      </div>
-      <div class="info-col">
-        <h3>Makmal Dr Atom <span style="color:#8b88a3; font-size:15px;">(Sains Tahun 1)</span></h3>
-        <p>Masuk ke makmal Dr Atom dan terokai konsep sains asas melalui eksperimen interaktif yang selamat dan menyeronokkan.</p>
-        <ul class="highlight-list">
-          <li>10 topik KSSR Sains lengkap, 20+ jenis soalan pintar</li>
-          <li>Combo streak system + monster battle + 4 power-up</li>
-          <li>Koleksi 20 kad sains &amp; daily challenge setiap hari</li>
-          <li>Kawalan ibu bapa + laporan kemajuan bergambar</li>
-        </ul>
-        <div class="shot-row">
-          <img src="<?= assetBase ?>/screenshots/dratom-1.jpg" alt="">
-          <img src="<?= assetBase ?>/screenshots/dratom-2.jpg" alt="">
-          <img src="<?= assetBase ?>/screenshots/dratom-3.jpg" alt="">
+        <div class="product-heading">
+          <h3>Makmal Dr Atom</h3>
+          <span class="subject-tag">Sains Tahun 1</span>
         </div>
         <div class="price-tag">RM25</div>
+      </div>
+      <p>Masuk ke makmal Dr Atom dan terokai konsep sains asas melalui eksperimen interaktif yang selamat dan menyeronokkan.</p>
+      <ul class="highlight-list">
+        <li>10 topik KSSR Sains lengkap, 20+ jenis soalan pintar</li>
+        <li>Combo streak system + monster battle + 4 power-up</li>
+        <li>Koleksi 20 kad sains &amp; daily challenge setiap hari</li>
+        <li>Kawalan ibu bapa + laporan kemajuan bergambar</li>
+      </ul>
+      <p class="slider-hint">👉 Leret untuk lihat lebih banyak screenshot</p>
+      <div class="screenshot-slider">
+        <img src="<?= assetBase ?>/screenshots/dratom-1.jpg" alt="Screenshot Makmal Dr Atom 1">
+        <img src="<?= assetBase ?>/screenshots/dratom-2.jpg" alt="Screenshot Makmal Dr Atom 2">
+        <img src="<?= assetBase ?>/screenshots/dratom-3.jpg" alt="Screenshot Makmal Dr Atom 3">
       </div>
     </div>
   </div>
 </section>
 
 <!-- PAKEJ & ORDER FORM -->
-<section class="section" id="pakej" style="background:#fff;">
+<section class="section section-pakej" id="pakej">
   <div class="container">
     <h2 class="section-title">Pilih Pakej Anda</h2>
     <p class="section-subtitle">Boleh pilih lebih dari satu pakej, atau jimat dengan pakej Bundle!</p>
