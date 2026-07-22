@@ -210,6 +210,10 @@
   .product-block p { color: #5b5876; margin: 0 0 14px; }
   .shot-row { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 6px; }
   .shot-row img { width: 140px; height: 100px; object-fit: cover; border-radius: 12px; flex-shrink: 0; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+  .highlight-list { list-style: none; padding: 0; margin: 0 0 14px; }
+  .highlight-list li { font-size: 14px; color: #5b5876; margin-bottom: 6px; padding-left: 22px; position: relative; }
+  .highlight-list li::before { content: "✅"; position: absolute; left: 0; }
+
   .price-tag {
     display: inline-block;
     background: var(--yellow);
