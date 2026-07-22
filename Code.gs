@@ -17,7 +17,7 @@ var PACKAGES = [
 ];
 
 // Update after the GitHub repo is created, e.g. https://cdn.jsdelivr.net/gh/USERNAME/REPO@main/assets
-var ASSET_BASE_URL = 'https://cdn.jsdelivr.net/gh/PLACEHOLDER/PLACEHOLDER@main/assets';
+var ASSET_BASE_URL = 'https://cdn.jsdelivr.net/gh/starisstudiomy-commits/educational-games-landing@main/assets';
 
 var PAYMENT_INFO = {
   bankName: 'Maybank',
