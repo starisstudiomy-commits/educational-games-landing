@@ -1,0 +1,79 @@
+<script>
+  var selectedPackages = {};
+  var ADMIN_WHATSAPP = '<?= paymentInfo.whatsapp ?>';
+
+  document.querySelectorAll('.package-card').forEach(function (card) {
+    card.addEventListener('click', function () {
+      var id = card.getAttribute('data-id');
+      if (selectedPackages[id]) {
+        delete selectedPackages[id];
+        card.classList.remove('selected');
+      } else {
+        selectedPackages[id] = {
+          price: parseFloat(card.getAttribute('data-price')),
+          name: card.getAttribute('data-name')
+        };
+        card.classList.add('selected');
+      }
+      updateTotal();
+    });
+  });
+
+  function updateTotal() {
+    var total = 0;
+    Object.keys(selectedPackages).forEach(function (id) { total += selectedPackages[id].price; });
+    document.getElementById('totalAmount').innerText = 'RM' + total;
+  }
+
+  document.getElementById('orderForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var msgEl = document.getElementById('formMsg');
+    msgEl.className = 'form-msg';
+    msgEl.innerText = '';
+
+    var packageIds = Object.keys(selectedPackages);
+    if (!packageIds.length) {
+      msgEl.className = 'form-msg error';
+      msgEl.innerText = 'Sila pilih sekurang-kurangnya satu pakej.';
+      return;
+    }
+
+    var submitBtn = document.getElementById('submitBtn');
+    submitBtn.disabled = true;
+    submitBtn.innerText = 'Menghantar...';
+
+    var formData = {
+      name: document.getElementById('name').value,
+      phone: document.getElementById('phone').value,
+      email: document.getElementById('email').value,
+      paymentMethod: document.getElementById('paymentMethod').value,
+      packages: packageIds
+    };
+
+    google.script.run
+      .withSuccessHandler(function (result) {
+        submitBtn.disabled = false;
+        submitBtn.innerText = 'Hantar Order 🎉';
+        document.getElementById('orderForm').classList.add('hidden');
+        document.getElementById('orderRefDisplay').innerText = result.orderRef;
+        document.getElementById('payAmount').innerText = result.amount;
+
+        var waText = encodeURIComponent(
+          'Hai Admin, saya sudah buat pembayaran untuk order ' + result.orderRef +
+          ' (RM' + result.amount + '). Sertakan resit pembayaran saya.'
+        );
+        document.getElementById('waLink').href = 'https://wa.me/' + ADMIN_WHATSAPP + '?text=' + waText;
+
+        var panel = document.getElementById('paymentPanel');
+        panel.classList.remove('hidden');
+        panel.scrollIntoView({ behavior: 'smooth' });
+      })
+      .withFailureHandler(function (err) {
+        submitBtn.disabled = false;
+        submitBtn.innerText = 'Hantar Order 🎉';
+        msgEl.className = 'form-msg error';
+        msgEl.innerText = err.message || 'Ralat berlaku, sila cuba lagi.';
+      })
+      .submitOrder(formData);
+  });
+</script>

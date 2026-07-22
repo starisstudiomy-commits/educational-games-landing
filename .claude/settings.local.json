@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(clasp --version)",
+      "Bash(gh --version)",
+      "Bash(gh auth *)",
+      "Bash(xargs du -h)"
+    ]
+  }
+}

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <base target="_top">
+  <?!= include('CSS'); ?>
+  <style>
+    .admin-wrap { max-width: 1100px; margin: 0 auto; padding: 30px 20px 60px; }
+    .login-box {
+      max-width: 380px; margin: 80px auto; background: #fff; padding: 32px;
+      border-radius: 24px; box-shadow: 0 10px 0 rgba(0,0,0,0.04), 0 4px 30px rgba(0,0,0,0.06); text-align: center;
+    }
+    .login-box input { width: 100%; padding: 12px 14px; border-radius: 14px; border: 2px solid #eee; margin: 16px 0; font-size: 15px; }
+    .login-box button {
+      width: 100%; background: var(--pink); color: #fff; font-weight: 800; padding: 14px; border: none;
+      border-radius: 999px; box-shadow: 0 6px 0 #d16b8a; cursor: pointer; font-size: 16px;
+    }
+    table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 16px; overflow: hidden; }
+    th, td { padding: 12px 14px; text-align: left; font-size: 14px; border-bottom: 1px solid #f0f0f5; }
+    th { background: #f4f4ff; font-weight: 800; }
+    tr:hover { background: #fffaf0; }
+    .status-pill { padding: 4px 12px; border-radius: 999px; font-weight: 700; font-size: 12px; display: inline-block; }
+    .status-pending { background: #ffe1ea; color: #d1436b; }
+    .status-done { background: #d1fae5; color: #067a4c; }
+    .approve-btn {
+      background: #22c55e; color: #fff; border: none; padding: 8px 16px; border-radius: 999px;
+      font-weight: 700; cursor: pointer; font-size: 13px;
+    }
+    .approve-btn:disabled { background: #ccc; cursor: not-allowed; }
+    .wa-mini { color: #25D366; font-weight: 700; font-size: 13px; }
+    .refresh-btn {
+      background: var(--purple); color: #fff; border: none; padding: 10px 20px; border-radius: 999px;
+      font-weight: 700; cursor: pointer; margin-bottom: 16px;
+    }
+    .table-scroll { overflow-x: auto; }
+  </style>
+</head>
+<body>
+
+<div id="loginView" class="login-box">
+  <h2>🔐 Admin Dashboard</h2>
+  <p style="color:#8b88a3;">Staris Studio - Order Management</p>
+  <input type="password" id="adminPassword" placeholder="Password admin" onkeydown="if(event.key==='Enter')doLogin()">
+  <button onclick="doLogin()">Log Masuk</button>
+  <div class="form-msg error" id="loginMsg"></div>
+</div>
+
+<div id="dashboardView" class="admin-wrap hidden">
+  <h2>📋 Senarai Order</h2>
+  <button class="refresh-btn" onclick="loadOrders()">🔄 Refresh</button>
+  <div class="table-scroll">
+    <table>
+      <thead>
+        <tr>
+          <th>Tarikh</th>
+          <th>Rujukan</th>
+          <th>Nama</th>
+          <th>Telefon</th>
+          <th>Email</th>
+          <th>Pakej</th>
+          <th>Jumlah</th>
+          <th>Status</th>
+          <th>Order ID</th>
+          <th>Tindakan</th>
+        </tr>
+      </thead>
+      <tbody id="ordersBody"></tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+  var adminPassword = '';
+
+  function doLogin() {
+    var pw = document.getElementById('adminPassword').value;
+    var msgEl = document.getElementById('loginMsg');
+    msgEl.innerText = '';
+    google.script.run
+      .withSuccessHandler(function (orders) {
+        adminPassword = pw;
+        document.getElementById('loginView').classList.add('hidden');
+        document.getElementById('dashboardView').classList.remove('hidden');
+        renderOrders(orders);
+      })
+      .withFailureHandler(function (err) {
+        msgEl.innerText = err.message || 'Password salah.';
+      })
+      .adminGetOrders(pw);
+  }
+
+  function loadOrders() {
+    google.script.run
+      .withSuccessHandler(renderOrders)
+      .withFailureHandler(function (err) { alert(err.message); })
+      .adminGetOrders(adminPassword);
+  }
+
+  function renderOrders(orders) {
+    var body = document.getElementById('ordersBody');
+    body.innerHTML = '';
+    orders.forEach(function (o) {
+      var tr = document.createElement('tr');
+      var isDone = o.status === 'Selesai';
+      var waText = encodeURIComponent('Hai ' + o.name + ', order ID anda: ' + (o.orderId || '') + '. Terima kasih!');
+      tr.innerHTML =
+        '<td>' + o.timestamp + '</td>' +
+        '<td>' + o.orderRef + '</td>' +
+        '<td>' + o.name + '</td>' +
+        '<td>' + o.phone + ' <br><a class="wa-mini" target="_blank" href="https://wa.me/' + normalizePhone(o.phone) + '?text=' + waText + '">WhatsApp</a></td>' +
+        '<td>' + o.email + '</td>' +
+        '<td>' + o.packages + '</td>' +
+        '<td>RM' + o.amount + '</td>' +
+        '<td><span class="status-pill ' + (isDone ? 'status-done' : 'status-pending') + '">' + o.status + '</span></td>' +
+        '<td>' + (o.orderId || '-') + '</td>' +
+        '<td>' + (isDone ? '✅ Selesai' : '<button class="approve-btn" onclick="approveOrder(' + o.rowNumber + ', this)">Approve</button>') + '</td>';
+      body.appendChild(tr);
+    });
+  }
+
+  function normalizePhone(phone) {
+    var digits = (phone || '').toString().replace(/[^0-9]/g, '');
+    if (digits.indexOf('0') === 0) digits = '60' + digits.substring(1);
+    return digits;
+  }
+
+  function approveOrder(rowNumber, btn) {
+    btn.disabled = true;
+    btn.innerText = 'Memproses...';
+    google.script.run
+      .withSuccessHandler(function (result) {
+        alert('Order diluluskan! Order ID: ' + result.orderId + '\nEmail sudah dihantar ke klien.\nJika klien tidak terima email, hubungi terus di WhatsApp.');
+        loadOrders();
+      })
+      .withFailureHandler(function (err) {
+        btn.disabled = false;
+        btn.innerText = 'Approve';
+        alert(err.message);
+      })
+      .adminApproveOrder(adminPassword, rowNumber);
+  }
+</script>
+</body>
+</html>
