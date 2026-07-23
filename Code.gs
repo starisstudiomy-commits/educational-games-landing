@@ -237,7 +237,7 @@ function sendClientOrderEmail(email, name, orderRef, packageNames, total) {
     + '<b>Jumlah:</b> RM' + total + '</p>'
     + '<p>Sila buat pembayaran melalui QR atau pindahan manual seperti yang dipaparkan di laman web, '
     + 'dan hantar resit/screenshot pembayaran ke WhatsApp admin: '
-    + '<a href="https://wa.me/' + PAYMENT_INFO.whatsapp + '">wa.me/' + PAYMENT_INFO.whatsapp + '</a>.</p>'
+    + '<a href="https://wasap.my/' + PAYMENT_INFO.whatsapp + '">wasap.my/' + PAYMENT_INFO.whatsapp + '</a>.</p>'
     + '<p>Order ID rasmi akan dihantar ke email ini sebaik sahaja pembayaran disahkan oleh admin.</p>'
     + '<p>Terima kasih kerana memilih Staris Studio! 🎉</p>';
   MailApp.sendEmail({ to: email, subject: subject, htmlBody: body });
