@@ -172,6 +172,15 @@
     color: #fff;
   }
   .hero h1 .highlight { color: var(--yellow); }
+  .hero h1.hero-headline-img {
+    margin: 0 auto 18px;
+    max-width: 560px;
+  }
+  .hero-headline-img img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
   .hero p.subtitle {
     font-size: clamp(16px, 2.2vw, 19px);
     max-width: 640px;
@@ -464,6 +473,18 @@
     margin: 0 auto 14px;
   }
   .package-card img { width: 84px; height: 84px; object-fit: contain; margin: 0 auto 12px; }
+  .package-card .bundle-logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    margin: 0 auto 12px;
+  }
+  .package-card .bundle-logos img {
+    width: 54px;
+    height: 54px;
+    margin: 0;
+  }
   .package-card h4 { margin: 0 0 6px; font-size: 18px; color: #fff; }
   .package-card .price { font-weight: 900; font-size: 28px; color: var(--yellow); margin-bottom: 4px; }
   .package-card .price span { font-size: 13px; font-weight: 700; color: var(--muted); }

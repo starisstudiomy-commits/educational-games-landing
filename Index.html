@@ -28,7 +28,9 @@
 
   <div class="hero-inner">
     <div class="hero-badge">✨ Belajar Sambil Bermain, Tahun 1</div>
-    <h1>Buat Anak Anda <span class="highlight">Jatuh Cinta</span><br>Dengan Belajar!</h1>
+    <h1 class="hero-headline-img">
+      <img src="<?= assetBase ?>/hero/hero-headline.png" alt="Buat Anak Anda Tertarik untuk Belajar!">
+    </h1>
     <p class="subtitle">3 permainan edukasi interaktif untuk Matematik, Bahasa Inggeris &amp; Sains Tahun 1 — dibina khas supaya anak-anak seronok belajar setiap hari.</p>
 
     <div class="hero-illustration">
@@ -225,12 +227,21 @@
     <div class="packages-grid" id="packagesGrid">
       <? for (var i = 0; i < packages.length; i++) { ?>
         <? var isBundle = packages[i].id === 'bundle'; ?>
+        <? var fileSlug = packages[i].id === 'atom' ? 'dratom' : packages[i].id; ?>
         <div class="package-card<? if (isBundle) { ?> popular<? } ?>" data-id="<?= packages[i].id ?>" data-price="<?= packages[i].price ?>" data-name="<?= packages[i].name ?>">
           <? if (isBundle) { ?>
             <span class="popular-badge">PALING POPULAR</span>
           <? } ?>
           <span class="tag"><? if (isBundle) { ?>3 Game<? } else { ?>1 Game<? } ?></span>
-          <img src="<?= assetBase ?>/logos/<? if (isBundle) { ?>momo<? } else { ?><?= packages[i].id ?><? } ?>-logo.png" alt="">
+          <? if (isBundle) { ?>
+            <div class="bundle-logos">
+              <img src="<?= assetBase ?>/logos/momo-logo.png" alt="">
+              <img src="<?= assetBase ?>/logos/kiki-logo.png" alt="">
+              <img src="<?= assetBase ?>/logos/dratom-logo.png" alt="">
+            </div>
+          <? } else { ?>
+            <img src="<?= assetBase ?>/logos/<?= fileSlug ?>-logo.png" alt="">
+          <? } ?>
           <h4><?= packages[i].name ?></h4>
           <div class="price">RM<?= packages[i].price ?> <span>/<? if (isBundle) { ?>3 game<? } else { ?>game<? } ?></span></div>
           <ul class="pkg-features">
