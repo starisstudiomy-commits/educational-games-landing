@@ -200,6 +200,7 @@ function adminApproveOrder(password, rowNumber) {
   var phone = sheet.getRange(rowNumber, 4).getValue();
 
   sendClientOrderIdEmail(email, name, orderId, packages);
+  sendAdminOrderApprovedEmail(orderId, name, phone, email, packages);
 
   return {
     orderId: orderId,
@@ -268,6 +269,20 @@ function sendClientOrderIdEmail(email, name, orderId, packageNames) {
     + '<p>Sila simpan Order ID ini dan gunakan untuk akses produk yang telah dibeli.</p>'
     + '<p>Terima kasih dan selamat belajar! 🎉</p>';
   MailApp.sendEmail({ to: email, subject: subject, htmlBody: body });
+}
+
+function sendAdminOrderApprovedEmail(orderId, name, phone, email, packageNames) {
+  var adminEmail = PropertiesService.getScriptProperties().getProperty('ADMIN_EMAIL');
+  if (!adminEmail) return;
+  var subject = 'Order Diluluskan - ' + orderId;
+  var body = ''
+    + '<p>Order berikut telah diluluskan dan Order ID telah dihantar ke pelanggan:</p>'
+    + '<p><b>Order ID:</b> ' + escapeHtml_(orderId) + '<br>'
+    + '<b>Nama:</b> ' + escapeHtml_(name) + '<br>'
+    + '<b>Telefon:</b> ' + escapeHtml_(phone) + '<br>'
+    + '<b>Email:</b> ' + escapeHtml_(email) + '<br>'
+    + '<b>Pakej:</b> ' + escapeHtml_(packageNames) + '</p>';
+  MailApp.sendEmail({ to: adminEmail, subject: subject, htmlBody: body });
 }
 
 function escapeHtml_(str) {
